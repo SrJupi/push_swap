@@ -70,7 +70,10 @@ t_item	*remove_item(t_stack *stack)
 		ret_item->next = ret_item;
 		stack->size -= 1;
 	}
-	else
+	if (stack->size == 0)
+	{
 		printf("Empty list\n");
+		stack->head = NULL;
+	}
 	return (ret_item);
 }

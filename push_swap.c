@@ -24,11 +24,21 @@ int	main(int argc, char **argv)
 		remove_item(&stack_b);
 	}
 	
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		printf("Stack A -> ");
-		remove_item(&stack_a);
+		insert_item(remove_item(&stack_a), &stack_b);
 	}
 
+	for (int i = 0; i < stack_a.size * 2; i++)
+	{
+		printf("Stack A head is %i\n", stack_a.head->value);
+		stack_a.head = stack_a.head->next;
+	}
+	for (int i = 0; i < stack_b.size * 5; i++)
+	{
+		printf("Stack B head is %i\n", stack_b.head->value);
+		stack_b.head = stack_b.head->next;
+	}
 	return (0);
 }
