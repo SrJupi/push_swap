@@ -1,6 +1,28 @@
 #include "push_swap.h"
 #include <stdio.h>
 
+void	print_stack(t_stack *stack)
+{
+	t_item	*tmp;
+
+	if (stack->size == 0)
+	{
+		printf("Empty stack!\n");
+	}
+	else
+	{
+		tmp = stack->head;
+		printf("Printing Stack: %i", stack->head->value);
+		rotate_stack(stack);
+		while (stack->head != tmp)
+		{
+			printf(", %i", stack->head->value);
+			rotate_stack(stack);
+		}
+		printf(".\n");
+	}
+}
+
 void	clean_stack(t_stack *stack)
 {
 	t_item	*tmp;
@@ -19,19 +41,20 @@ void	clean_stack(t_stack *stack)
 
 int	create_stack(t_stack *stack, int argc, char **argv)
 {
-//	t_item	*tmp;
-
 	stack->size = 0;
 	stack->max = argc - 1;
 	stack->head = NULL;
-	while (argc > 1)
+	if (argv != NULL)
 	{
-		if (insert_item(create_item(argv[argc - 1]), stack))
+		while (argc > 1)
 		{
-			clean_stack(stack);
-			return (1);
+			if (insert_item(create_item(argv[argc - 1]), stack))
+			{
+				clean_stack(stack);
+				return (1);
+			}
+			argc--;
 		}
-		argc--;
 	}
 	return (0);
 }
@@ -69,11 +92,8 @@ t_item	*remove_item(t_stack *stack)
 		ret_item->prev = ret_item;
 		ret_item->next = ret_item;
 		stack->size -= 1;
-	}
-	if (stack->size == 0)
-	{
-		printf("Empty list\n");
-		stack->head = NULL;
+		if (stack->size == 0)
+			stack->head = NULL;
 	}
 	return (ret_item);
 }
