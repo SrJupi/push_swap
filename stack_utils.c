@@ -86,14 +86,17 @@ t_item	*remove_item(t_stack *stack)
 	{
 		printf("Removing item: %i\n", stack->head->value);
 		ret_item = stack->head;
-		stack->head = ret_item->next;
-		stack->head->prev = ret_item->prev;
-		stack->head->prev->next = stack->head;
-		ret_item->prev = ret_item;
-		ret_item->next = ret_item;
 		stack->size -= 1;
 		if (stack->size == 0)
 			stack->head = NULL;
+		else
+		{
+			stack->head = ret_item->next;
+			stack->head->prev = ret_item->prev;
+			stack->head->prev->next = stack->head;
+		}
+		ret_item->prev = ret_item;
+		ret_item->next = ret_item;
 	}
 	return (ret_item);
 }
