@@ -8,38 +8,32 @@ void	clean_item(t_item **item)
 	*item = NULL;
 }
 
-static int	ft_isdigit(char c)
+static int	ft_isspace(char c)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
+	(void)c;
 	return (0);
 }
 
-static int	item_atoi(int *item_value, char *str)
+static int	item_cmp(int item_value, char *str)
 {
-	long	neg;
-	long	tmp;
+	char	*value_itoa;
+	int		size_itoa;
+	int		size_str;
+	int		cmp;
 
-	*item_value = 0;
-	neg = 1;
-	if (!ft_isdigit(*str) && *str != '-')
+	value_itoa = ft_itoa(item_value);
+	if (value_itoa == NULL)
 		return (1);
-	if (*str == '-')
-	{
-		neg = -1;
+	while (ft_isspace(*str))
 		str++;
-	}
-	while (*str)
-	{
-		if (!ft_isdigit(*str))
-			return (1);
-		tmp = tmp * 10 + ((*str - '0') * neg);
-		str++;
-	}
-	if (tmp >= INT_MAX || tmp <= INT_MIN)
-		return (1);
-	*item_value = (int)tmp;
-	return (0);
+	size_itoa = ft_strlen(value_itoa);
+	size_str = ft_strlen(str);
+	if (size_itoa >= size_str)
+		cmp = ft_strncmp(str, value_itoa, size_itoa);
+	else
+		cmp = ft_strncmp(str, value_itoa, size_str);
+	free(value_itoa);
+	return (cmp);
 }
 
 t_item	*create_item(char *str)
@@ -52,7 +46,8 @@ t_item	*create_item(char *str)
 	{
 		new_item->prev = new_item;
 		new_item->next = new_item;
-		if (item_atoi(&(new_item->value), str))
+		new_item->value = ft_atoi(str);
+		if (item_cmp(new_item->value, str))
 			clean_item(&new_item);
 	}
 	return (new_item);

@@ -5,6 +5,7 @@
 # include <stdlib.h>
 # include <signal.h>
 # include <limits.h>
+# include "libft/libft.h"
 
 typedef struct t_item
 {
@@ -31,8 +32,8 @@ t_item	*create_item(char *str);
 void	clean_item(t_item **item);
 
 //Move utils
-void	rotate_stack(t_stack *stack);
-void	rev_rotate_stack(t_stack *stack);
-void	push_stack(t_stack *popped, t_stack *pushed);
-void	swap_stack(t_stack *stack);
+int	rotate_stack(t_stack *stack);
+int	rev_rotate_stack(t_stack *stack);
+int	push_stack(t_stack *popped, t_stack *pushed);
+int	swap_stack(t_stack *stack);
 #endif

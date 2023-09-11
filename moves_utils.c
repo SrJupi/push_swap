@@ -1,23 +1,32 @@
 #include "push_swap.h"
 
-void	rotate_stack(t_stack *stack)
+int	rotate_stack(t_stack *stack)
 {
 	if (stack->size >= 2)
+	{
 		stack->head = stack->head->next;
+		return (0);
+	}
+	return (1);
 }
 
-void	rev_rotate_stack(t_stack *stack)
+int	rev_rotate_stack(t_stack *stack)
 {
 	if (stack->size >= 2)
+	{
 		stack->head = stack->head->prev;
+		return (0);
+	}
+	return (1);
+
 }
 
-void	push_stack(t_stack *popped, t_stack *pushed)
+int	push_stack(t_stack *popped, t_stack *pushed)
 {
-	insert_item(remove_item(popped), pushed);
+	return (insert_item(remove_item(popped), pushed));
 }
 
-void	swap_stack(t_stack *stack)
+int	swap_stack(t_stack *stack)
 {
 	int	tmp;
 
@@ -26,5 +35,7 @@ void	swap_stack(t_stack *stack)
 		tmp = stack->head->value;
 		stack->head->value = stack->head->next->value;
 		stack->head->next->value = tmp;
+		return (0);
 	}
+	return (1);
 }
