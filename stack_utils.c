@@ -39,9 +39,24 @@ void	clean_stack(t_stack *stack)
 	stack->head = NULL;
 }
 
+int	check_double(t_stack *stack)
+{
+	t_item *current;
+
+	current = stack->head;
+	rotate_stack(stack);
+	while (stack->head != current)
+	{
+		if (current->value == stack->head->value)
+			return (1);
+		rotate_stack(stack);
+	}
+	return (0);
+}
+
 int	create_stack(t_stack *stack, int size, char **argv)
 {
-	printf("size: %i\n", size);
+	t_item *new_item;
 	stack->size = 0;
 	stack->max = size;
 	stack->head = NULL;
@@ -49,11 +64,12 @@ int	create_stack(t_stack *stack, int size, char **argv)
 	{
 		while (size)
 		{
-			if (insert_item(create_item(argv[size - 1]), stack))
+			new_item = create_item(argv[size - 1]);
+			if (insert_item(new_item, stack) || check_double(stack))
 			{
 				clean_stack(stack);
 				return (1);
-			}
+			}	
 			size--;
 		}
 	}
@@ -85,7 +101,6 @@ t_item	*remove_item(t_stack *stack)
 	ret_item = NULL;
 	if (stack->size != 0)
 	{
-		printf("Removing item: %i\n", stack->head->value);
 		ret_item = stack->head;
 		stack->size -= 1;
 		if (stack->size == 0)

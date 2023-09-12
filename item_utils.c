@@ -43,7 +43,7 @@ t_item	*create_item(char *str)
 {
 	t_item	*new_item;
 
-	printf("Creating item with str: %s\n", str);
+	//printf("Creating item with str: %s\n", str);
 	new_item = (t_item *) malloc (sizeof(t_item));
 	if (new_item != NULL)
 	{

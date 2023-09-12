@@ -3,7 +3,9 @@
 
 static void	do_push_swap(t_stack stack_a, t_stack stack_b)
 {
-	if (stack_a.size <= 2)
+	if (stack_a.size == 1)
+		ft_putchar_fd('\n', 1);
+	else if (stack_a.size == 2)
 		sort_two(&stack_a);
 	else if (stack_a.size == 3)
 		sort_three(&stack_a);
@@ -23,8 +25,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (create_stack(&stack_a, argc - 1, argv))
 	{
-		printf("Oh, oh! Some shit happened!\n");
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 	create_stack(&stack_b, argc - 1, NULL);
 	do_push_swap(stack_a, stack_b);
