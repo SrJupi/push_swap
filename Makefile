@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror -MMD
 
 ft = libft/libft.a
 
-SRC = push_swap.c item_utils.c stack_utils.c moves_utils.c
+SRC = push_swap.c item_utils.c stack_utils.c moves_utils.c parse_utils.c moves_push.c moves_rotate.c moves_rrotate.c moves_swap.c small_sort.c
 OBJ = $(SRC:.c=.o)
 DEP = $(SRC:.c=.d)
 

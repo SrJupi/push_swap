@@ -10,7 +10,10 @@ void	clean_item(t_item **item)
 
 static int	ft_isspace(char c)
 {
-	(void)c;
+	if (c == ' ' || c == '\t'
+		|| c == '\v' || c == '\f'
+		|| c == '\r' || c == '\n')
+		return (1);
 	return (0);
 }
 

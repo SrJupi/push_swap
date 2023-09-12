@@ -39,21 +39,22 @@ void	clean_stack(t_stack *stack)
 	stack->head = NULL;
 }
 
-int	create_stack(t_stack *stack, int argc, char **argv)
+int	create_stack(t_stack *stack, int size, char **argv)
 {
+	printf("size: %i\n", size);
 	stack->size = 0;
-	stack->max = argc - 1;
+	stack->max = size;
 	stack->head = NULL;
 	if (argv != NULL)
 	{
-		while (argc > 1)
+		while (size)
 		{
-			if (insert_item(create_item(argv[argc - 1]), stack))
+			if (insert_item(create_item(argv[size - 1]), stack))
 			{
 				clean_stack(stack);
 				return (1);
 			}
-			argc--;
+			size--;
 		}
 	}
 	return (0);

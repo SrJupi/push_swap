@@ -5,6 +5,7 @@
 # include <stdlib.h>
 # include <signal.h>
 # include <limits.h>
+#include <stdio.h>
 # include "libft/libft.h"
 
 typedef struct t_item
@@ -21,6 +22,10 @@ typedef struct t_stack
 	struct t_item	*head;
 }	t_stack;
 
+//Parse utils
+int split_size(char **split);
+int check_parameters(int *argc, char ***argv);
+
 //Stack utils
 int		create_stack(t_stack *stack, int argc, char **argv);
 int		insert_item(t_item *new_item, t_stack *stack);
@@ -32,8 +37,26 @@ t_item	*create_item(char *str);
 void	clean_item(t_item **item);
 
 //Move utils
-int	rotate_stack(t_stack *stack);
-int	rev_rotate_stack(t_stack *stack);
-int	push_stack(t_stack *popped, t_stack *pushed);
-int	swap_stack(t_stack *stack);
+void	rotate_stack(t_stack *stack);
+void	rev_rotate_stack(t_stack *stack);
+void	push_stack(t_stack *popped, t_stack *pushed);
+void	swap_stack(t_stack *stack);
+void    ra(t_stack *stack);
+void    rb(t_stack *stack);
+void    rr(t_stack *stack_a, t_stack *stack_b);
+void    rra(t_stack *stack);
+void    rrb(t_stack *stack);
+void    rrr(t_stack *stack_a, t_stack *stack_b);
+void    pa(t_stack *stack_a, t_stack *stack_b);
+void    pb(t_stack *stack_a, t_stack *stack_b);
+void    sa(t_stack *stack);
+void    sb(t_stack *stack);
+void    ss(t_stack *stack_a, t_stack *stack_b);
+
+//Sort functions
+void sort_two(t_stack *stack_a);
+void sort_three(t_stack *stack_a);
+void sort_five(t_stack *stack_a, t_stack *stack_b);
+void sort_big(t_stack *stack_a, t_stack *stack_b);
+
 #endif
