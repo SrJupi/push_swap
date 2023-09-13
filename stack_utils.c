@@ -14,12 +14,25 @@ void	print_stack(t_stack *stack)
 		tmp = stack->head;
 		ft_putstr_fd("Printing Stack: ", 1);
 		ft_putnbr_fd(stack->head->value, 1);
+/* 		ft_putchar_fd('-', 1);
+		ft_putnbr_fd(stack->head->distance, 1);
+		ft_putchar_fd('-', 1);
+		ft_putnbr_fd(stack->head->my_moves, 1);
+		ft_putchar_fd('-', 1);
+		ft_putnbr_fd(stack->head->other_moves, 1); */
+
 		//printf("Printing Stack: %i", stack->head->value);
 		rotate_stack(stack);
 		while (stack->head != tmp)
 		{
 			ft_putstr_fd("-> ", 1);
 			ft_putnbr_fd(stack->head->value, 1);
+/* 			ft_putchar_fd('/', 1);
+			ft_putnbr_fd(stack->head->distance, 1);
+			ft_putchar_fd('-', 1);
+			ft_putnbr_fd(stack->head->my_moves, 1);
+			ft_putchar_fd('-', 1);
+			ft_putnbr_fd(stack->head->other_moves, 1); */
 
 			//printf(", %i", stack->head->value);
 			rotate_stack(stack);

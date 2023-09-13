@@ -2,11 +2,11 @@
 #include "push_swap.h"
 
 
-int get_r_or_rr(int i, int size)
+int get_r_or_rr(int counter, int size)
 {
-    if (i > size/2)
-        return (i - size);
-    return (i);
+    if (counter > size/2)
+        return (counter - size);
+    return (counter);
 }
 
 void get_distance_max(t_item *head, t_stack *stack_b)
@@ -14,14 +14,18 @@ void get_distance_max(t_item *head, t_stack *stack_b)
    // ft_putstr_fd("get_distance_max...\n", 1);
 
     int j;
-    
+    t_item *og_head;
+
     j = 0;
-    while(stack_b->head->next != stack_b->tmp)
+    og_head = stack_b->head;
+    while(j < stack_b->size)
     {
         if (stack_b->head->value == stack_b->max)
             head->other_moves = get_r_or_rr(j, stack_b->size);
         j++;
         stack_b->head = stack_b->head->next;
+        if (stack_b->head == og_head)
+            break ;
     }
 }
 
@@ -30,13 +34,15 @@ void get_distance_normal(t_item *head, t_stack *stack_b, long tmp, long closest)
     //ft_putstr_fd("get_distance_normal...\n", 1);
 
     int j;
+    t_item *og_head;
 
-    j = 0;    
-    while (stack_b->head->next != stack_b->tmp)
+    j = 0;
+    og_head = stack_b->head;
+    while (1)
     {
         if (stack_b->head->value < head->value)
         {
-            tmp = stack_b->head->value - head->value;
+            tmp = head->value - stack_b->head->value;
             if (tmp < closest)
             {
                 closest = tmp;
@@ -45,6 +51,8 @@ void get_distance_normal(t_item *head, t_stack *stack_b, long tmp, long closest)
         }
         j++;
         stack_b->head = stack_b->head->next;
+        if (stack_b->head == og_head)
+            break ;
     }
 }
 
@@ -75,12 +83,11 @@ void get_moves(t_stack *stack_a, t_stack *stack_b)
   long      closest;
   long      tmp;
   int       i;
+  t_item    *og_head;
 
-  stack_a->tmp = stack_a->head;
-  stack_b->tmp = stack_b->head;
   i = 0;
-
-  while (stack_a->head->next != stack_a->tmp)
+  og_head = stack_a->head;
+  while (1)
   {
     stack_a->head->my_moves = get_r_or_rr(i, stack_a->size);
     closest = LONG_MAX;
@@ -91,6 +98,8 @@ void get_moves(t_stack *stack_a, t_stack *stack_b)
     i++;
     get_distance(stack_a->head);
     rotate_stack(stack_a);
+    if (stack_a->head == og_head)
+        break ;
   }
 }
 
@@ -121,10 +130,11 @@ t_item  *find_shortest(t_stack *stack)
 {
     int shortest = INT_MAX;
     t_item *short_item;
+    int i;
 
     short_item = NULL;
-    stack->tmp = stack->head;
-    while (stack->head->next != stack->tmp)
+    i = 0;
+    while (i < stack->size)
     {
         if (stack->head->distance < shortest)
         {
@@ -132,6 +142,7 @@ t_item  *find_shortest(t_stack *stack)
             shortest = stack->head->distance;
         }
         rotate_stack(stack);
+        i++;
     }
     return (short_item); 
 }
@@ -141,6 +152,10 @@ void move_shortest(t_stack *stack_a, t_stack *stack_b)
 //    ft_putstr_fd("move shortest...\n", 1);
     t_item  *item_to_send;
 
+    print_stack(stack_a);
+    print_stack(stack_b);
+    ft_putnbr_fd(stack_b->head->value, 1);
+    ft_putchar_fd('\n', 1);
     item_to_send = find_shortest(stack_a);
     while (item_to_send->my_moves > 0 && item_to_send->other_moves > 0)
     {
@@ -180,22 +195,23 @@ void move_shortest(t_stack *stack_a, t_stack *stack_b)
 void get_max_to_top(t_stack *stack)
 {
     int i;
+    t_item  *og_head;
     
     i = 0;
-    stack->tmp = stack->head;
-/*     ft_putstr_fd("head: ",1);
+    og_head = stack->head;
+    ft_putstr_fd("head: ",1);
     ft_putnbr_fd(stack->head->value, 1);
-    ft_putchar_fd('\n', 1); */
-    while (stack->head->next != stack->tmp)
+    ft_putchar_fd('\n', 1);
+    while (i < stack->size)
     {
         if (stack->head->value == stack->max)
             break ;
         i++;
         stack->head = stack->head->next;
     }
-    stack->head = stack->tmp;
+    stack->head = og_head;
     i = get_r_or_rr(i, stack->size);
-/*     ft_putnbr_fd(i, 1);
+    ft_putnbr_fd(i, 1);
     ft_putchar_fd('\n', 1);
 
     ft_putstr_fd("head: ",1);
@@ -208,7 +224,7 @@ void get_max_to_top(t_stack *stack)
 
     ft_putstr_fd("next: ",1);
     ft_putnbr_fd(stack->head->next->value, 1);
-    ft_putchar_fd('\n', 1); */
+    ft_putchar_fd('\n', 1);
 
     while (i < 0)
     {
@@ -218,6 +234,6 @@ void get_max_to_top(t_stack *stack)
     while (i > 0)
     {
         rb(stack);
-        i++;
+        i--;
     }
 }

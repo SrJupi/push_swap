@@ -24,7 +24,6 @@ typedef struct t_stack
 	int				min;
 	int				max;
 	struct t_item	*head;
-	struct t_item	*tmp;
 }	t_stack;
 
 //Parse utils
