@@ -11,6 +11,9 @@
 typedef struct t_item
 {
 	int				value;
+	int distance;
+	int my_moves;
+	int other_moves;
 	struct t_item	*prev;
 	struct t_item	*next;
 }	t_item;
@@ -18,8 +21,10 @@ typedef struct t_item
 typedef struct t_stack
 {
 	int				size;
+	int				min;
 	int				max;
 	struct t_item	*head;
+	struct t_item	*tmp;
 }	t_stack;
 
 //Parse utils
@@ -58,5 +63,9 @@ void sort_two(t_stack *stack_a);
 void sort_three(t_stack *stack_a);
 void sort_five(t_stack *stack_a, t_stack *stack_b);
 void sort_big(t_stack *stack_a, t_stack *stack_b);
+
+//Sort utils
+void    push_b_to_a(t_stack *stack_a, t_stack *stack_b);
+int ft_abs(int num);
 
 #endif

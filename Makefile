@@ -17,8 +17,6 @@ all: lib $(NAME)
 
 $(NAME): $(OBJ) $(ft)
 	$(CC) $(OBJ) -L./libft -lft -o $(NAME)
-	@echo "So long compiled!"
-
 
 lib: 
 	make -C libft

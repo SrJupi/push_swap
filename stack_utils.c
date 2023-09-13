@@ -58,7 +58,9 @@ int	create_stack(t_stack *stack, int size, char **argv)
 {
 	t_item *new_item;
 	stack->size = 0;
-	stack->max = size;
+	stack->max_size = size;
+	stack->max = INT_MIN;
+	stack->min = INT_MAX;
 	stack->head = NULL;
 	if (argv != NULL)
 	{
@@ -91,6 +93,10 @@ int	insert_item(t_item *new_item, t_stack *stack)
 		stack->head = new_item;
 	}
 	stack->size += 1;
+	if (new_item->value > stack->max)
+		stack->max = new_item->value;
+	if (new_item->value < stack->min)
+		stack->min = new_item->value;
 	return (0);
 }
 
