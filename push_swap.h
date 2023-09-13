@@ -67,5 +67,8 @@ void sort_big(t_stack *stack_a, t_stack *stack_b);
 //Sort utils
 void    push_b_to_a(t_stack *stack_a, t_stack *stack_b);
 int ft_abs(int num);
+void move_shortest(t_stack *stack_a, t_stack *stack_b);
+void get_moves(t_stack *stack_a, t_stack *stack_b);
+void get_max_to_top(t_stack *stack);
 
 #endif

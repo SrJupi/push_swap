@@ -12,14 +12,19 @@ void	print_stack(t_stack *stack)
 	else
 	{
 		tmp = stack->head;
-		printf("Printing Stack: %i", stack->head->value);
+		ft_putstr_fd("Printing Stack: ", 1);
+		ft_putnbr_fd(stack->head->value, 1);
+		//printf("Printing Stack: %i", stack->head->value);
 		rotate_stack(stack);
 		while (stack->head != tmp)
 		{
-			printf(", %i", stack->head->value);
+			ft_putstr_fd("-> ", 1);
+			ft_putnbr_fd(stack->head->value, 1);
+
+			//printf(", %i", stack->head->value);
 			rotate_stack(stack);
 		}
-		printf(".\n");
+		ft_putstr_fd(".\n",1);
 	}
 }
 
@@ -58,7 +63,6 @@ int	create_stack(t_stack *stack, int size, char **argv)
 {
 	t_item *new_item;
 	stack->size = 0;
-	stack->max_size = size;
 	stack->max = INT_MIN;
 	stack->min = INT_MAX;
 	stack->head = NULL;

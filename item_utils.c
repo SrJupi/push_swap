@@ -43,6 +43,9 @@ t_item	*create_item(char *str)
 {
 	t_item	*new_item;
 
+/* 	ft_putstr_fd("Creating item with str: ", 1);
+	ft_putstr_fd(str, 1);
+	ft_putchar_fd('\n', 1); */
 	//printf("Creating item with str: %s\n", str);
 	new_item = (t_item *) malloc (sizeof(t_item));
 	if (new_item != NULL)
