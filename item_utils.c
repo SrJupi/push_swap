@@ -3,7 +3,6 @@
 
 void	clean_item(t_item **item)
 {
-	printf("\n~~~~Cleaning Item - %i ~~~~\n", (*item)->value);
 	free(*item);
 	*item = NULL;
 }

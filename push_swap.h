@@ -30,10 +30,11 @@ typedef struct t_stack
 
 //Parse utils
 int split_size(char **split);
-int check_parameters(int *argc, char ***argv);
+int check_parameters(int *argc, char ***argv, int *split);
 
 //Stack utils
 int		create_stack(t_stack *stack, int argc, char **argv);
+void	clean_stack(t_stack *stack);
 int		insert_item(t_item *new_item, t_stack *stack);
 void	print_stack(t_stack *stack);
 t_item	*remove_item(t_stack *stack);

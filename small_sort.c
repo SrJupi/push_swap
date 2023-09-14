@@ -45,7 +45,7 @@ int is_sorted(t_stack *stack)
     t_item *tmp;
 
     tmp = stack->head;
-    while (1)
+    while (stack->head->next != tmp)
     {
         if (stack->head->value > stack->head->next->value)
         {
@@ -53,8 +53,6 @@ int is_sorted(t_stack *stack)
             return (0);
         }
         stack->head = stack->head->next;
-        if (stack->head == tmp)
-            break ;
     }
     return (1);
 }

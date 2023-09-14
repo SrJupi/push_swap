@@ -1,52 +1,10 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-void	print_stack(t_stack *stack)
-{
-	t_item	*tmp;
-
-	if (stack->size == 0)
-	{
-		printf("Empty stack!\n");
-	}
-	else
-	{
-		tmp = stack->head;
-		ft_putstr_fd("Printing Stack: ", 1);
-		ft_putnbr_fd(stack->head->value, 1);
-/* 		ft_putchar_fd('-', 1);
-		ft_putnbr_fd(stack->head->distance, 1);
-		ft_putchar_fd('-', 1);
-		ft_putnbr_fd(stack->head->my_moves, 1);
-		ft_putchar_fd('-', 1);
-		ft_putnbr_fd(stack->head->other_moves, 1); */
-
-		//printf("Printing Stack: %i", stack->head->value);
-		rotate_stack(stack);
-		while (stack->head != tmp)
-		{
-			ft_putstr_fd("-> ", 1);
-			ft_putnbr_fd(stack->head->value, 1);
-/* 			ft_putchar_fd('/', 1);
-			ft_putnbr_fd(stack->head->distance, 1);
-			ft_putchar_fd('-', 1);
-			ft_putnbr_fd(stack->head->my_moves, 1);
-			ft_putchar_fd('-', 1);
-			ft_putnbr_fd(stack->head->other_moves, 1); */
-
-			//printf(", %i", stack->head->value);
-			rotate_stack(stack);
-		}
-		ft_putstr_fd(".\n",1);
-	}
-}
-
 void	clean_stack(t_stack *stack)
 {
 	t_item	*tmp;
 
-	if (stack->size > 0)
-		printf("\n...Cleaning Stack...\n");
 	while (stack->size > 0)
 	{
 		tmp = stack->head->next;
@@ -75,6 +33,9 @@ int	check_double(t_stack *stack)
 int	create_stack(t_stack *stack, int size, char **argv)
 {
 	t_item *new_item;
+
+	if (size == 0)
+		return (1);
 	stack->size = 0;
 	stack->max = INT_MIN;
 	stack->min = INT_MAX;

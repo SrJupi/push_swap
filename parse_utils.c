@@ -10,19 +10,17 @@ int split_size(char **split)
     return (size + 1);
 }
 
-int check_parameters(int *argc, char ***argv)
+int check_parameters(int *argc, char ***argv, int *split)
 {
     if (*argc < 2)
-	{
-		printf("NO PARAMETERS!\n");
 		return (1);
-	}
 	else if (*argc == 2)
 	{
 		*argv = ft_split((*argv)[1], ' ');
 		if (*argv == NULL)
 			return (1);
 		*argc = split_size(*argv);
+		*split = 1;
 	}
 	else
 	{
