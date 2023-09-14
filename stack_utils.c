@@ -79,6 +79,7 @@ int	create_stack(t_stack *stack, int size, char **argv)
 	stack->max = INT_MIN;
 	stack->min = INT_MAX;
 	stack->head = NULL;
+	stack->shortest = NULL;
 	if (argv != NULL)
 	{
 		while (size)

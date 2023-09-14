@@ -45,7 +45,7 @@ int is_sorted(t_stack *stack)
     t_item *tmp;
 
     tmp = stack->head;
-    while (stack->head->next != tmp)
+    while (1)
     {
         if (stack->head->value > stack->head->next->value)
         {
@@ -53,6 +53,8 @@ int is_sorted(t_stack *stack)
             return (0);
         }
         stack->head = stack->head->next;
+        if (stack->head == tmp)
+            break ;
     }
     return (1);
 }
@@ -80,19 +82,19 @@ void sort_big(t_stack *stack_a, t_stack *stack_b)
         get_moves(stack_a, stack_b);
         move_shortest(stack_a, stack_b);
     }
-    ft_putstr_fd("antes\n", 1);
+/*     ft_putstr_fd("antes\n", 1);
     print_stack(stack_a);
-    print_stack(stack_b);
+    print_stack(stack_b); */
     get_max_to_top(stack_b);
     sort_three(stack_a);
-    ft_putstr_fd("durante\n", 1);
+/*     ft_putstr_fd("durante\n", 1);
 
     print_stack(stack_a);
-    print_stack(stack_b);
+    print_stack(stack_b); */
     push_b_to_a(stack_a, stack_b);
-    ft_putstr_fd("depois\n", 1);
+/*     ft_putstr_fd("depois\n", 1);
 
     print_stack(stack_a);
-    print_stack(stack_b);
+    print_stack(stack_b); */
     
 }
