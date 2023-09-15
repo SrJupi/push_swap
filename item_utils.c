@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   item_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsulzbac <lsulzbac@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/15 14:15:31 by lsulzbac          #+#    #+#             */
+/*   Updated: 2023/09/15 14:16:31 by lsulzbac         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-#include <stdio.h>
 
 void	clean_item(t_item **item)
 {
@@ -41,10 +52,6 @@ t_item	*create_item(char *str)
 {
 	t_item	*new_item;
 
-	/* 	ft_putstr_fd("Creating item with str: ", 1);
-		ft_putstr_fd(str, 1);
-		ft_putchar_fd('\n', 1); */
-	// printf("Creating item with str: %s\n", str);
 	new_item = (t_item *)malloc(sizeof(t_item));
 	if (new_item != NULL)
 	{

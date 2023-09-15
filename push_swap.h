@@ -63,14 +63,22 @@ void				ss(t_stack *stack_a, t_stack *stack_b);
 // Sort functions
 void				sort_two(t_stack *stack_a);
 void				sort_three(t_stack *stack_a);
-void				sort_five(t_stack *stack_a, t_stack *stack_b);
 void				sort_big(t_stack *stack_a, t_stack *stack_b);
 
 // Sort utils
 void				push_b_to_a(t_stack *stack_a, t_stack *stack_b);
 int					ft_abs(int num);
-void				move_shortest(t_stack *stack_a, t_stack *stack_b);
-void				get_moves(t_stack *stack_a, t_stack *stack_b);
+int					get_r_or_rr(int counter, int size);
 void				get_max_to_top(t_stack *stack);
+void				do_negative_moves(t_stack *stack_a, t_stack *stack_b,
+						int *moves_a, int *moves_b);
+void				do_positive_moves(t_stack *stack_a, t_stack *stack_b,
+						int *moves_a, int *moves_b);
+void	get_distance_max(t_item *head, t_stack *stack_b);
+void	get_distance_normal(t_item *head, t_stack *stack_b, long tmp,
+		long closest);
+void	get_distance(t_item *head);
+void	get_shortest(t_stack *stack);
+
 
 #endif
