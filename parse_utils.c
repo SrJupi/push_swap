@@ -1,18 +1,18 @@
 #include "push_swap.h"
 
-int split_size(char **split)
+int	split_size(char **split)
 {
-    int size;
+	int	size;
 
-    size = 0;
-    while (split[size] != NULL)
-        size++;
-    return (size + 1);
+	size = 0;
+	while (split[size] != NULL)
+		size++;
+	return (size + 1);
 }
 
-int check_parameters(int *argc, char ***argv, int *split)
+int	check_parameters(int *argc, char ***argv, int *split)
 {
-    if (*argc < 2)
+	if (*argc < 2)
 		return (1);
 	else if (*argc == 2)
 	{
@@ -26,5 +26,5 @@ int check_parameters(int *argc, char ***argv, int *split)
 	{
 		(*argv)++;
 	}
-    return (0);
+	return (0);
 }

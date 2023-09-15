@@ -17,7 +17,7 @@ void	clean_stack(t_stack *stack)
 
 int	check_double(t_stack *stack)
 {
-	t_item *current;
+	t_item	*current;
 
 	current = stack->head;
 	rotate_stack(stack);
@@ -32,7 +32,7 @@ int	check_double(t_stack *stack)
 
 int	create_stack(t_stack *stack, int size, char **argv)
 {
-	t_item *new_item;
+	t_item	*new_item;
 
 	if (size == 0)
 		return (1);
@@ -50,7 +50,7 @@ int	create_stack(t_stack *stack, int size, char **argv)
 			{
 				clean_stack(stack);
 				return (1);
-			}	
+			}
 			size--;
 		}
 	}

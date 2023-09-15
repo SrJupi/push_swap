@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include "push_swap.h"
+#include <stdio.h>
 
 static void	free_split(char **r, size_t i)
 {
@@ -24,12 +24,11 @@ static void	do_push_swap(t_stack *stack_a, t_stack *stack_b)
 		sort_big(stack_a, stack_b);
 }
 
-
 int	main(int argc, char **argv)
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
-	int	split;
+	int		split;
 
 	split = 0;
 	if (check_parameters(&argc, &argv, &split))
@@ -42,7 +41,7 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\n", STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
-	create_stack(&stack_b, argc - 1, NULL	);
+	create_stack(&stack_b, argc - 1, NULL);
 	do_push_swap(&stack_a, &stack_b);
 	clean_stack(&stack_a);
 	clean_stack(&stack_b);

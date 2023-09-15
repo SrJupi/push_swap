@@ -9,9 +9,8 @@ void	clean_item(t_item **item)
 
 static int	ft_isspace(char c)
 {
-	if (c == ' ' || c == '\t'
-		|| c == '\v' || c == '\f'
-		|| c == '\r' || c == '\n')
+	if (c == ' ' || c == '\t' || c == '\v' || c == '\f' || c == '\r'
+		|| c == '\n')
 		return (1);
 	return (0);
 }
@@ -42,11 +41,11 @@ t_item	*create_item(char *str)
 {
 	t_item	*new_item;
 
-/* 	ft_putstr_fd("Creating item with str: ", 1);
-	ft_putstr_fd(str, 1);
-	ft_putchar_fd('\n', 1); */
-	//printf("Creating item with str: %s\n", str);
-	new_item = (t_item *) malloc (sizeof(t_item));
+	/* 	ft_putstr_fd("Creating item with str: ", 1);
+		ft_putstr_fd(str, 1);
+		ft_putchar_fd('\n', 1); */
+	// printf("Creating item with str: %s\n", str);
+	new_item = (t_item *)malloc(sizeof(t_item));
 	if (new_item != NULL)
 	{
 		new_item->prev = new_item;
