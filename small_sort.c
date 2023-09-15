@@ -59,7 +59,6 @@ int is_sorted(t_stack *stack)
 
 void sort_five(t_stack *stack_a, t_stack *stack_b)
 {
-    //print_stack(stack_a);
     if (is_sorted(stack_a))
         return ;
     while (stack_a->size > 3)
@@ -73,26 +72,15 @@ void sort_big(t_stack *stack_a, t_stack *stack_b)
 {
     if (is_sorted(stack_a))
         return ;
-    pb(stack_a, stack_b);
+    if (stack_a->size > 4)
+        pb(stack_a, stack_b);
     pb(stack_a, stack_b);
     while (stack_a->size > 3)
     {
         get_moves(stack_a, stack_b);
         move_shortest(stack_a, stack_b);
     }
-/*     ft_putstr_fd("antes\n", 1);
-    print_stack(stack_a);
-    print_stack(stack_b); */
     get_max_to_top(stack_b);
     sort_three(stack_a);
-/*     ft_putstr_fd("durante\n", 1);
-
-    print_stack(stack_a);
-    print_stack(stack_b); */
-    push_b_to_a(stack_a, stack_b);
-/*     ft_putstr_fd("depois\n", 1);
-
-    print_stack(stack_a);
-    print_stack(stack_b); */
-    
+    push_b_to_a(stack_a, stack_b);    
 }
